@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SmallTileSource>C:\Users\kalov\Documents\Threading\ThreadingDogs\WebCrawler\Assets\doge.jpeg</SmallTileSource>
+    <Source>C:\Users\kalov\Documents\Threading\ThreadingDogs\WebCrawler\Assets\doge.jpeg</Source>
+    <MediumTileSource>C:\Users\kalov\Documents\Threading\ThreadingDogs\WebCrawler\Assets\doge.jpeg</MediumTileSource>
+    <AppIconSource>C:\Users\kalov\Documents\Threading\ThreadingDogs\WebCrawler\Assets\doge.jpeg</AppIconSource>
+    <BadgeLogoSource>C:\Users\kalov\Documents\Threading\ThreadingDogs\WebCrawler\Assets\doge.jpeg</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\kalov\Documents\Threading\ThreadingDogs\WebCrawler\Assets\doge.jpeg</PackageLogoSource>
+  </PropertyGroup>
+</Project>

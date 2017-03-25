@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="AliceBlue">
+        <Button x:Name="getBreeds" Content="Get Breeds" HorizontalAlignment="Left" Margin="1038,794,0,0" VerticalAlignment="Top" Height="98" Width="199" Click="getBreeds_Click_1" BorderThickness="1" BorderBrush="White"/>
+        <ListView x:Name="DogsLog" HorizontalAlignment="Left" Height="664" Margin="48,221,0,0" VerticalAlignment="Top" Width="874" BorderThickness="2" BorderBrush="Gray"></ListView>
     </Grid>
 </Page>

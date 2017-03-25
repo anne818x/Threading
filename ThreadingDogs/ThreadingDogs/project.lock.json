@@ -21958,21 +21958,18 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Patri\\.nuget\\packages\\": {}
+    "C:\\Users\\kalov\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
+      "projectUniqueName": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
       "projectName": "ThreadingDogs",
-      "projectPath": "D:\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
-      "projectJsonPath": "D:\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\project.json",
+      "projectPath": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
+      "projectJsonPath": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {
-      "Microsoft.NETCore.UniversalWindowsPlatform": {
-        "target": "Package",
-        "version": "[5.2.2, )"
-      }
+      "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2"
     },
     "frameworks": {
       "uap10.0": {}

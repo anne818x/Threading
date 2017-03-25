@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="WebCrawler.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WebCrawler"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="AliceBlue">
+        <Button x:ConnectionId='1' x:Name="getBreeds" Content="Get Breeds" HorizontalAlignment="Left" Margin="1038,794,0,0" VerticalAlignment="Top" Height="98" Width="199"                           BorderThickness="1" BorderBrush="White"/>
+        <ListView x:ConnectionId='2' x:Name="DogsLog" HorizontalAlignment="Left" Height="664" Margin="48,221,0,0" VerticalAlignment="Top" Width="874" BorderThickness="2" BorderBrush="Gray"></ListView>
+    </Grid>
+</Page>
+

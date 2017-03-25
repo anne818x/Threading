@@ -2,6 +2,15 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -2142,6 +2151,15 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4390,6 +4408,15 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -6677,6 +6704,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -8934,6 +8970,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -11230,6 +11275,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -13487,6 +13541,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -15784,6 +15847,40 @@
     }
   },
   "libraries": {
+    "HtmlAgilityPack/1.4.9.5": {
+      "sha512": "iKBDxJHESRCIRbmgLKVkNM86LIX52jf6wsVQdbSsLpPUG9oSnAD1Pz8IHjJT+dQ3TWJEu4WYZvbdlixdmWKMVw==",
+      "type": "package",
+      "path": "htmlagilitypack/1.4.9.5",
+      "files": [
+        "HAPIcon.png",
+        "htmlagilitypack.1.4.9.5.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net20/HtmlAgilityPack.dll",
+        "lib/Net20/HtmlAgilityPack.pdb",
+        "lib/Net20/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.pri",
+        "lib/NetCore45/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/sl5/HtmlAgilityPack.XML",
+        "lib/sl5/HtmlAgilityPack.dll",
+        "lib/sl5/HtmlAgilityPack.pdb",
+        "readme.txt"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -21953,26 +22050,25 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "HtmlAgilityPack >= 1.4.9.5",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2"
     ],
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Patri\\.nuget\\packages\\": {}
+    "C:\\Users\\kalov\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Threading\\ThreadingDogs\\WebCrawler\\WebCrawler.csproj",
+      "projectUniqueName": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\WebCrawler\\WebCrawler.csproj",
       "projectName": "WebCrawler",
-      "projectPath": "D:\\Documents\\Threading\\ThreadingDogs\\WebCrawler\\WebCrawler.csproj",
-      "projectJsonPath": "D:\\Documents\\Threading\\ThreadingDogs\\WebCrawler\\project.json",
+      "projectPath": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\WebCrawler\\WebCrawler.csproj",
+      "projectJsonPath": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\WebCrawler\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {
-      "Microsoft.NETCore.UniversalWindowsPlatform": {
-        "target": "Package",
-        "version": "[5.2.2, )"
-      }
+      "HtmlAgilityPack": "1.4.9.5",
+      "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2"
     },
     "frameworks": {
       "uap10.0": {}
