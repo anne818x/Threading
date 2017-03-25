@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System.Threading;
-using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,19 +13,23 @@ namespace WebCrawler
     {
         private Classes.WebCrawler crawler = new Classes.WebCrawler();
 
+        public static ProgressBar Progress;
+
         public MainPage()
         {
             this.InitializeComponent();
+            Progress = BarProgress;
         }
 
-        private async void getBreeds_Click_1(object sender, RoutedEventArgs e)
+        private async void GetBreeds_Click_1(object sender, RoutedEventArgs e)
         {
             var task = crawler.GetBreedsData();
             await task;
 
-            await crawler.GetUniqueBreedInfo();
+            var task2 = crawler.GetUniqueBreedInfo();
+            await task2;
 
-            var breeds = crawler.GetBreeds();
+            IEnumerable<Classes.Dog> breeds = crawler.GetBreeds();
 
             foreach (var dog in breeds)
             {

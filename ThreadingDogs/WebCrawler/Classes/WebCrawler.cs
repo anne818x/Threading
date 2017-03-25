@@ -17,7 +17,7 @@ namespace WebCrawler.Classes
         public async Task GetBreedsData()
         {
             //clear breeds list if there are any records
-            if (Breeds.Count>0)
+            if (Breeds.Count > 0)
             {
                 Breeds.Clear();
             }
@@ -32,10 +32,15 @@ namespace WebCrawler.Classes
 
             var divs = htmlDocument.DocumentNode.Descendants("div")
                 .Where(node => node.GetAttributeValue("class", "")
-                .Equals("group-list-item")).ToList();
+                    .Equals("group-list-item")).ToList();
 
-            foreach (var div in divs)
+            for (var index = 0; index < divs.Count; index++)
             {
+                //Progress bar increment
+                MainPage.Progress.Value = ((index + 1) / (double) divs.Count) * 100;
+                await Task.Delay(10);
+
+                var div = divs[index];
                 var dog = new Dog()
                 {
                     Breed = div.Descendants("h2").FirstOrDefault().InnerText,
@@ -48,26 +53,67 @@ namespace WebCrawler.Classes
 
         public async Task GetUniqueBreedInfo()
         {
-            foreach (var dog in Breeds)
+            for (var index = 0; index < Breeds.Count; index++)
             {
-                var dogProfile = dog.ProfileUrl;
+                MainPage.Progress.Value = ((index + 1) / (double) Breeds.Count) * 100;
+
+                var dog = Breeds[index];
+                var profileUrl = dog.ProfileUrl;
 
                 var httpClient = new HttpClient();
-                var html = await httpClient.GetStringAsync(dogProfile);
+                var html = await httpClient.GetStringAsync(profileUrl);
 
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(html);
 
-                var generalInfo= htmlDocument.DocumentNode.Descendants("div")
-                .Where(node => node.GetAttributeValue("class", "")
-                .Equals("inside-box")).ToList();
+                var generalInfo = htmlDocument.DocumentNode.Descendants("div")
+                    .Where(node => node.GetAttributeValue("class", "")
+                        .Equals("inside-box")).ToList();
 
-                var breedGroup = generalInfo.ElementAt(1).ChildNodes.ElementAt(2).InnerText;
-                var height = generalInfo.ElementAt(1).ChildNodes.ElementAt(5).InnerText;
-                var weight = generalInfo.ElementAt(1).ChildNodes.ElementAt(8).InnerText;
-                var lifeSpan = generalInfo.ElementAt(1).ChildNodes.ElementAt(11).InnerText;
+                string breedGroup;
+                string height;
+                string weight;
+                string lifeSpan; 
+
+                try
+                {
+                     breedGroup = generalInfo.ElementAt(1).ChildNodes.ElementAt(2).InnerText;
+                }
+                catch (Exception e)
+                {
+                    breedGroup = "none";
+                }
+
+                try
+                {
+                    height = generalInfo.ElementAt(1).ChildNodes.ElementAt(5).InnerText;
+                }
+                catch (Exception e)
+                {
+                    height = "none";
+                }
+
+                try
+                {
+                    weight = generalInfo.ElementAt(1).ChildNodes.ElementAt(8).InnerText;
+                }
+                catch (Exception e)
+                {
+                    weight = "none";
+                }
+
+                try
+                {
+                    lifeSpan = generalInfo.ElementAt(1).ChildNodes.ElementAt(11).InnerText;
+                }
+                catch (Exception e)
+                {
+                    lifeSpan = "none";
+                }
             }
         }
+
+
 
         public List<Dog> GetBreeds()
         {

@@ -8,7 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="AliceBlue">
-        <Button x:Name="getBreeds" Content="Get Breeds" HorizontalAlignment="Left" Margin="1038,794,0,0" VerticalAlignment="Top" Height="98" Width="199" Click="getBreeds_Click_1" BorderThickness="1" BorderBrush="White"/>
-        <ListView x:Name="DogsLog" HorizontalAlignment="Left" Height="664" Margin="48,221,0,0" VerticalAlignment="Top" Width="874" BorderThickness="2" BorderBrush="Gray"></ListView>
+        <Button x:Name="GetBreeds" Content="Get Breeds" HorizontalAlignment="Left" Margin="1102,794,0,0" VerticalAlignment="Top" Height="78" Width="179" Click="GetBreeds_Click_1" BorderThickness="1" BorderBrush="Gray"/>
+        <ListView x:Name="DogsLog" HorizontalAlignment="Left" Height="664" Margin="58,71,0,0" VerticalAlignment="Top" Width="874" BorderThickness="2" BorderBrush="Gray"></ListView>
+        <ProgressBar x:Name="BarProgress" HorizontalAlignment="Left" Height="78" Margin="58,794,0,0" VerticalAlignment="Top" Width="874" BorderBrush="Gray"/>
     </Grid>
 </Page>
