@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.AppService;
 using HtmlAgilityPack;
 
 namespace WebCrawler.Classes
 {
     class WebCrawler
     {
-
         public static List<Dog> Breeds = new List<Dog>();
+        public static List<Dog> ExportBreeds = new List<Dog>();
+        private MainPage Page;
+
+        public WebCrawler(MainPage page)
+        {
+            this.Page = page;
+        }
 
         public async Task GetBreedsData()
         {
@@ -22,7 +26,7 @@ namespace WebCrawler.Classes
                 Breeds.Clear();
             }
 
-            var url = "http://dogtime.com/dog-breeds/profiles";
+            const string url = "http://dogtime.com/dog-breeds/profiles";
 
             var httpClient = new HttpClient();
             var html = await httpClient.GetStringAsync(url);
@@ -53,71 +57,90 @@ namespace WebCrawler.Classes
 
         public async Task GetUniqueBreedInfo()
         {
-            for (var index = 0; index < Breeds.Count; index++)
+            //Dog model containing full information for each breed
+            var completeDog = new Dog();
+            try
             {
-                MainPage.Progress.Value = ((index + 1) / (double) Breeds.Count) * 100;
-
-                var dog = Breeds[index];
-                var profileUrl = dog.ProfileUrl;
-
-                var httpClient = new HttpClient();
-                var html = await httpClient.GetStringAsync(profileUrl);
-
-                var htmlDocument = new HtmlDocument();
-                htmlDocument.LoadHtml(html);
-
-                var generalInfo = htmlDocument.DocumentNode.Descendants("div")
-                    .Where(node => node.GetAttributeValue("class", "")
-                        .Equals("inside-box")).ToList();
-
-                string breedGroup;
-                string height;
-                string weight;
-                string lifeSpan; 
-
-                try
+                for (var index = 0; index < Breeds.Count; index++)
                 {
-                     breedGroup = generalInfo.ElementAt(1).ChildNodes.ElementAt(2).InnerText;
-                }
-                catch (Exception e)
-                {
-                    breedGroup = "none";
-                }
+                    //Progress Bar counter
+                    MainPage.Progress.Value = ((index + 1) / (double) Breeds.Count) * 100;
+                    var dog = Breeds[index];
 
-                try
-                {
-                    height = generalInfo.ElementAt(1).ChildNodes.ElementAt(5).InnerText;
-                }
-                catch (Exception e)
-                {
-                    height = "none";
-                }
+                    //basic data about breed
+                    completeDog.Breed = dog.Breed;
+                    completeDog.Image = dog.Image;
+                    completeDog.ProfileUrl = dog.ProfileUrl;
 
-                try
-                {
-                    weight = generalInfo.ElementAt(1).ChildNodes.ElementAt(8).InnerText;
-                }
-                catch (Exception e)
-                {
-                    weight = "none";
-                }
+                    //Request to get html page for each dog
+                    var httpClient = new HttpClient();
+                    var html = await httpClient.GetStringAsync(dog.ProfileUrl);
 
-                try
-                {
-                    lifeSpan = generalInfo.ElementAt(1).ChildNodes.ElementAt(11).InnerText;
-                }
-                catch (Exception e)
-                {
-                    lifeSpan = "none";
+                    var htmlDocument = new HtmlDocument();
+                    htmlDocument.LoadHtml(html);
+
+                    var generalInfo = htmlDocument.DocumentNode.Descendants("div")
+                        .Where(node => node.GetAttributeValue("class", "")
+                            .Equals("inside-box")).ToList();
+
+                    /*var description = htmlDocument.DocumentNode.Descendants("header")
+                        .Where(node => node.GetAttributeValue("h2", "")
+                            .Equals("inside-box")).ToList();*/
+
+                    //getting additional information for each dog
+                    try
+                    {
+                        completeDog.BreedGroup = generalInfo.ElementAt(1).ChildNodes.ElementAt(2).InnerText;
+                    }
+                    catch (Exception e)
+                    {
+                        completeDog.BreedGroup = "no information";
+                    }
+
+                    try
+                    {
+                        completeDog.Height = generalInfo.ElementAt(1).ChildNodes.ElementAt(5).InnerText;
+                    }
+                    catch (Exception e)
+                    {
+                        completeDog.Height = "no information";
+                    }
+
+                    try
+                    {
+                        completeDog.Weight = generalInfo.ElementAt(1).ChildNodes.ElementAt(8).InnerText;
+                    }
+                    catch (Exception e)
+                    {
+                        completeDog.Weight = "no information";
+                    }
+
+                    try
+                    {
+                        completeDog.LifeSpan = generalInfo.ElementAt(1).ChildNodes.ElementAt(11).InnerText;
+                    }
+                    catch (Exception e)
+                    {
+                        completeDog.LifeSpan = "no information";
+                    }
+                    ExportBreeds.Add(completeDog);
                 }
             }
+            catch (Exception e)
+            {
+                Page.ChangeTextBoxValue(e.ToString());
+            }
         }
-
 
 
         public List<Dog> GetBreeds()
         {
             return Breeds;
+        }
+
+        public int GetBreedsCount()
+        {
+            return Breeds.Count;
         }
     }
 }
