@@ -52,7 +52,7 @@ namespace WebCrawler
 
         private void saveToDb_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseUpload.inert();
+            DatabaseUpload.InsertToDb();
         }
 
         public void ChangeTextBoxValue(string message)

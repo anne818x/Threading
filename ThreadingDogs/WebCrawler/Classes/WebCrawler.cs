@@ -57,12 +57,13 @@ namespace WebCrawler.Classes
 
         public async Task GetUniqueBreedInfo()
         {
-            //Dog model containing full information for each breed
-            var completeDog = new Dog();
             try
             {
                 for (var index = 0; index < Breeds.Count; index++)
                 {
+                    //Dog model containing full information for each breed
+                    var completeDog = new Dog();
+
                     //Progress Bar counter
                     MainPage.Progress.Value = ((index + 1) / (double) Breeds.Count) * 100;
                     var dog = Breeds[index];

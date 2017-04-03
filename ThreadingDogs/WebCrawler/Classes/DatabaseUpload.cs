@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 //using Microsoft.EntityFrameworkCore;
 
@@ -14,18 +7,21 @@ namespace WebCrawler.Classes
 {
     class DatabaseUpload
     {
-        public static bool inert()
+        public static bool InsertToDb()
         {
             try
             {
-                foreach (var breed in WebCrawler.ExportBreeds)
+                using (
+                    MySqlConnection connection =
+                        new MySqlConnection("Server=127.0.0.1;Database=dogthreading;Uid=root;Pwd=1234;SslMode=None;"))
                 {
-                    using (MySqlConnection connection = new MySqlConnection("Server=127.0.0.1;Database=dogthreading;Uid=root;Pwd=1234;SslMode=None;"))
+                    connection.Open();
+                    foreach (var breed in WebCrawler.ExportBreeds)
                     {
-                        connection.Open();
                         MySqlCommand insertCommand = connection.CreateCommand();
-                        insertCommand.CommandText = "INSERT INTO dog( breed, dog_image, breed_group, dog_height, dog_weight, lifespan, link_dog)VALUES( @breed, @dog_image, @breed_group, @dog_height, @dog_weight, @lifespan, @link_dog)";
-                       // insertCommand.Parameters.AddWithValue("@id_dog", 1);
+                        insertCommand.CommandText =
+                            "INSERT INTO dog( breed, dog_image, breed_group, dog_height, dog_weight, lifespan, link_dog)VALUES( @breed, @dog_image, @breed_group, @dog_height, @dog_weight, @lifespan, @link_dog)";
+                        // insertCommand.Parameters.AddWithValue("@id_dog", 1);
                         insertCommand.Parameters.AddWithValue("@breed", breed.Breed);
                         insertCommand.Parameters.AddWithValue("@dog_image", breed.Image);
                         insertCommand.Parameters.AddWithValue("@breed_group", breed.BreedGroup);
@@ -34,8 +30,8 @@ namespace WebCrawler.Classes
                         insertCommand.Parameters.AddWithValue("@lifespan", breed.LifeSpan);
                         insertCommand.Parameters.AddWithValue("@link_dog", breed.ProfileUrl);
                         insertCommand.ExecuteNonQuery();
-
                     }
+
                 }
                 return true;
             }
