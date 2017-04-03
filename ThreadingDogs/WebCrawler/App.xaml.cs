@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite.Internal;
 
 namespace WebCrawler
 {
@@ -30,6 +32,22 @@ namespace WebCrawler
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            SqliteEngine.UseWinSqlite3(); //Configuring library to use SDK version of SQLite
+            using (SqliteConnection db = new SqliteConnection("Filename=dogDatabase.db"))
+            {
+                db.Open();
+                String tableCommand = "CREATE TABLE IF NOT EXISTS dog (Primary_Key INTEGER PRIMARY KEY AUTOINCREMENT, Text_Entry NVARCHAR(2048) NULL)";
+                SqliteCommand createTable = new SqliteCommand(tableCommand, db);
+                try
+                {
+                    createTable.ExecuteReader();
+                }
+                catch (SqliteException e)
+                {
+                    //Do nothing
+                }
+            }
         }
 
         /// <summary>
