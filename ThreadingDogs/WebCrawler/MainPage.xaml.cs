@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using WebCrawler.Classes;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -13,12 +14,15 @@ namespace WebCrawler
         private Classes.WebCrawler crawler;
 
         public static ProgressBar Progress;
+    
 
         public MainPage()
         {
             this.InitializeComponent();
             Progress = BarProgress;
             crawler = new Classes.WebCrawler(this);
+
+       
         }
 
         private async void GetBreeds_Click_1(object sender, RoutedEventArgs e)
@@ -48,12 +52,19 @@ namespace WebCrawler
 
         private void saveToDb_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseUpload.InsertIntoDatabase();
+            DatabaseUpload.inert();
         }
 
         public void ChangeTextBoxValue(string message)
         {
             TextLog.Text += "\r\n" + message;
         }
+
+      
+           
+
+        }
+
+
     }
-}
+

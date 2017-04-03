@@ -13,6 +13,6 @@
         <ProgressBar x:Name="BarProgress" HorizontalAlignment="Left" Height="78" Margin="58,794,0,0" VerticalAlignment="Top" Width="874" BorderBrush="Gray"/>
         <TextBox x:Name="TextLog" HorizontalAlignment="Left" Margin="1058,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="359" Width="797" AcceptsReturn="true"/>
         <Button x:Name="GetAddData" Content="Get Additional Data" HorizontalAlignment="Left" Margin="1302,480,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.646,-4.812" Height="78" Width="179" Click="GetAddData_Click"/>
-        <Button x:Name="saveToDb" Content="Save to database" HorizontalAlignment="Left" Margin="1550,480,0,0" VerticalAlignment="Top" Height="78" Width="179" Click="saveToDb_Click"/>
+        <Button x:Name="saveToDb" Content="Save to database" HorizontalAlignment="Left" Margin="1058,657,0,0" VerticalAlignment="Top" Height="78" Width="179" Click="saveToDb_Click"/>
     </Grid>
 </Page>
