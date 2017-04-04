@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -45,17 +46,7 @@ namespace ThreadingDogs
                 Dogslist.Items.Add(dog.Breed);
             }
         }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-            
-        }
+        
         private void Dogslist_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             liStdog = data.dogList();
@@ -64,6 +55,7 @@ namespace ThreadingDogs
                 if (Dogslist.SelectedItem.ToString() == dog.Breed)
                 {
                     breed.Text = "Breed: " + dog.Breed;
+                    imagedog.Source = new BitmapImage(new Uri(dog.Image, UriKind.Absolute));
                     breedgroup.Text = "Breed Group: " + dog.BreedGroup;
                     dogheight.Text = "Height: " + dog.Height;
                     dogweight.Text = "Weight: " + dog.Weight;

@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace ThreadingDogs
                             dog.Height = reader.GetString("dog_height");
                             dog.Weight = reader.GetString("dog_weight");
                             dog.LifeSpan = reader.GetString("lifespan");
+                            dog.Image = reader.GetString("dog_image");
                             Breedname.Add(dog);
                         }
                     }
@@ -42,5 +44,8 @@ namespace ThreadingDogs
             }
             return Breedname;
         }
-    }
+
+     
+           
+        }
 }
