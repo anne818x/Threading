@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Windows.UI.ViewManagement;
 using WebCrawler.Classes;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -12,19 +13,23 @@ namespace WebCrawler
     public partial class MainPage : Page
     {
         private Classes.WebCrawler crawler;
+        private Classes.DatabaseUpload dbUpload;
 
         public static ProgressBar Progress;
-    
 
         public MainPage()
         {
             this.InitializeComponent();
             Progress = BarProgress;
             crawler = new Classes.WebCrawler(this);
-
-       
+            dbUpload = new Classes.DatabaseUpload(this);
         }
 
+        /// <summary>
+        /// Method gathering breed names, links to profiles and images.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void GetBreeds_Click_1(object sender, RoutedEventArgs e)
         {
             var task = crawler.GetBreedsData();
@@ -40,31 +45,45 @@ namespace WebCrawler
             }
         }
 
+        /// <summary>
+        /// Method gathering additional information for each breed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void GetAddData_Click(object sender, RoutedEventArgs e)
         {
+            SaveToDb.IsEnabled = false;
             TextLog.Text += "Downloading additional information..." + "\r\n";
 
             var task = crawler.GetUniqueBreedInfo();
             await task;
 
             TextLog.Text += "Done!";
+            SaveToDb.IsEnabled = true;
         }
 
-        private void saveToDb_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Button to save breeds to DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void saveToDb_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseUpload.InsertToDb();
+            GetAddData.IsEnabled = false;
+            TextLog.Text += "\r\n" + "Saving to database";
+            var taskDb = dbUpload.InsertToDb();
+            await taskDb;
+            GetAddData.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Input information into the message box
+        /// </summary>
+        /// <param name="message"></param>
         public void ChangeTextBoxValue(string message)
         {
             TextLog.Text += "\r\n" + message;
         }
-
-      
-           
-
-        }
-
-
     }
+}
 

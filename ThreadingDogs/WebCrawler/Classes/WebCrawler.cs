@@ -9,13 +9,13 @@ namespace WebCrawler.Classes
 {
     class WebCrawler
     {
-        public static List<Dog> Breeds = new List<Dog>();
-        public static List<Dog> ExportBreeds = new List<Dog>();
-        private MainPage Page;
+        private static List<Dog> Breeds = new List<Dog>();
+        private static List<Dog> ExportBreeds = new List<Dog>();
+        private readonly MainPage _page;
 
         public WebCrawler(MainPage page)
         {
-            this.Page = page;
+            this._page = page;
         }
 
         public async Task GetBreedsData()
@@ -84,10 +84,6 @@ namespace WebCrawler.Classes
                         .Where(node => node.GetAttributeValue("class", "")
                             .Equals("inside-box")).ToList();
 
-                    /*var description = htmlDocument.DocumentNode.Descendants("header")
-                        .Where(node => node.GetAttributeValue("h2", "")
-                            .Equals("inside-box")).ToList();*/
-
                     //getting additional information for each dog
                     try
                     {
@@ -129,7 +125,7 @@ namespace WebCrawler.Classes
             }
             catch (Exception e)
             {
-                Page.ChangeTextBoxValue(e.ToString());
+                _page.ChangeTextBoxValue("Exeption with getting breeds!");
             }
         }
 
@@ -142,6 +138,11 @@ namespace WebCrawler.Classes
         public int GetBreedsCount()
         {
             return Breeds.Count;
+        }
+
+        public List<Dog> GetAllDogs()
+        {
+            return ExportBreeds;
         }
     }
 }
