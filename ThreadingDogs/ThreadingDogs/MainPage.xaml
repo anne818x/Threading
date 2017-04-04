@@ -5,7 +5,54 @@
     xmlns:local="using:ThreadingDogs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Load">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot Grid.Row="1">
+            <PivotItem Header="Compare">
+                <TextBlock>
+                    <Run>Pivot now supports the following keyboard behaviors</Run><LineBreak/>
+                    <Run> * While the HeaderPanel is focused:</Run><LineBreak/>
+                    <Run> * * Left, Right, Ctrl+PgUp, Ctrl+PgDown: Changes the currently selected PivotItem</Run><LineBreak/>
+                    <Run> * * Down: Sets focus in the content area</Run><LineBreak/>
+                    <Run> * While the Content area is focused:</Run><LineBreak/>
+                    <Run> * * Ctrl+PgUp, Ctrl+PgDown: Changes the currently selected PivotItem</Run>
+                </TextBlock>
+            </PivotItem>
+
+            <PivotItem Header="Select Dog" Margin="14,10,10,-10">
+                <StackPanel Orientation="Horizontal">
+
+                    <StackPanel HorizontalAlignment="Left" Width="350">
+
+                        <TextBlock  FontSize="20">
+                            <Run x:Name="breed" FontSize="20" /><LineBreak/>
+                        </TextBlock>
+                        <Image HorizontalAlignment="Left" Height="200" Width="200" Source="Assets/commondoggo.png" Stretch="Fill"/>
+                        <TextBlock >                       
+                        <Run x:Name="breedgroup" FontSize="12" /><LineBreak/>
+                        <Run x:Name="dogheight" FontSize="12" /><LineBreak/>
+                        <Run x:Name="dogweight" FontSize="12" /><LineBreak/>
+                        <Run x:Name="life" FontSize="12" /><LineBreak/>                        
+                        </TextBlock>
+                     
+                    </StackPanel>
+                    
+
+                    <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
+                        <TextBlock FontSize="20">
+                            <Run Text="Select dog"/>
+                        </TextBlock>
+                        <ListView x:Name="Dogslist" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="Dogslist_OnSelectionChanged" IsItemClickEnabled="True"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </PivotItem>
+        </Pivot>
+
+
+
+
+    </Grid>
 </Page>
