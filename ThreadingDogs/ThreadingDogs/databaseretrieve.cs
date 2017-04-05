@@ -32,6 +32,7 @@ namespace ThreadingDogs
                             dog.Weight = reader.GetString("dog_weight");
                             dog.LifeSpan = reader.GetString("lifespan");
                             dog.Image = reader.GetString("dog_image");
+                            dog.ProfileUrl = reader.GetString("link_dog");
                             Breedname.Add(dog);
                         }
                     }
