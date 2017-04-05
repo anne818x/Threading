@@ -16,8 +16,10 @@ namespace ThreadingDogs
         {
             try
             {
+                //Connection string to the database 
                 using (MySqlConnection connection = new MySqlConnection("Server = 127.0.0.1; Database = dogthreading; Uid = root; Pwd = 1234; SslMode = None;"))
                 {
+                    //Opens
                     connection.Open();
                     MySqlCommand getCommand = connection.CreateCommand();
                     getCommand.CommandText = "SELECT * FROM dog";

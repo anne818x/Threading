@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Load" Width="1142.091" Height="673.078">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" IsEnabled="True">
-        <Grid x:Name="Area" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-       
-            <Pivot Grid.Row="1">
+        <Grid x:Name="Area" ScrollViewer.HorizontalScrollBarVisibility="Visible" Background="#FF8BD1BE">
+
+            <Pivot ScrollViewer.HorizontalScrollBarVisibility="Visible">
                 <PivotItem Header="Compare">
                     <StackPanel Orientation="Horizontal">
 
@@ -81,7 +81,7 @@
                 </PivotItem>
             </Pivot>
             <Button x:Name="appbar_Printer" Click="appbar_Printer_Click"
-                       Content="Button" HorizontalAlignment="Left" Margin="144,412,0,0" VerticalAlignment="Top"/>
+                       Content="Print Page" HorizontalAlignment="Left" Margin="144,412,0,0" VerticalAlignment="Top"/>
 
         </Grid>
     </ScrollViewer>

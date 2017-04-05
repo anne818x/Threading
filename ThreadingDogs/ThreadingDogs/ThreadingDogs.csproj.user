@@ -3,4 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <UseSimulator>true</UseSimulator>
   </PropertyGroup>
+  <PropertyGroup>
+    <SplashScreenSource>C:\Users\emily\Documents\Threading\ThreadingDogs\ThreadingDogs\Assets\Dogs.png</SplashScreenSource>
+  </PropertyGroup>
 </Project>
