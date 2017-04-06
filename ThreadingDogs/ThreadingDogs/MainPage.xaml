@@ -12,7 +12,7 @@
                 <PivotItem Header="Compare">
                     <StackPanel Orientation="Horizontal">
 
-                        <StackPanel HorizontalAlignment="Left" Width="350">
+                        <StackPanel HorizontalAlignment="Left" Width="350" Height="400" BorderBrush="DarkGray" BorderThickness="5">
 
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed1" FontSize="20" /><LineBreak/>
@@ -28,12 +28,12 @@
                         </StackPanel>
 
 
-                        <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
-                            <Button x:Name="selectDogComBtn" Click="selectDogComBtn_Click"  Content="Select Dog"/>
+                        <StackPanel HorizontalAlignment="Right" Width="375" Margin="10,10,0,118">
+                            <Button x:Name="selectDogComBtn" Margin="142,0,0,0" Click="selectDogComBtn_Click"  Content="Select Dog"/>
                             <ListView x:Name="DogslistCompare" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="DogslistCompare_OnSelectionChanged" IsItemClickEnabled="True"  SelectionMode="Multiple"  Visibility="Collapsed"/>
-
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right" Margin="10,10,0,118">
+                        
+                        <StackPanel HorizontalAlignment="Right" Margin="10,10,0,0" Width="350" Height="400" BorderBrush="DarkGray" BorderThickness="5">
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed2" FontSize="20" /><LineBreak/>
                             </TextBlock>
@@ -49,9 +49,9 @@
                 </PivotItem>
 
                 <PivotItem Header="Select Dog" Margin="14,10,10,-10">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" >
 
-                        <StackPanel HorizontalAlignment="Left" Width="350">
+                        <StackPanel HorizontalAlignment="Left" Width="350" Height="400" BorderBrush="DarkGray" BorderThickness="5">
 
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed" FontSize="20" /><LineBreak/>
@@ -67,7 +67,7 @@
                         </StackPanel>
 
 
-                        <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
+                        <StackPanel HorizontalAlignment="Right" Margin="10,10,0,118">
                             <Button x:Name="selectDogBtn" Click="selectDogBtn_Click"  Content="Select Dog"/>
                             <ListView x:Name="Dogslist" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="Dogslist_OnSelectionChanged" IsItemClickEnabled="True"  Visibility="Collapsed"/>
                         </StackPanel>
@@ -75,7 +75,7 @@
 
                 </PivotItem>
             </Pivot>
-            <Button x:Name="appbar_Printer" Click="appbar_Printer_Click" Content="Print Page" HorizontalAlignment="Left" Margin="144,412,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="appbar_Printer" Click="appbar_Printer_Click" Content="Print Page" HorizontalAlignment="Left" Margin="144,600,0,0" VerticalAlignment="Top"/>
             
 
         </Grid>
