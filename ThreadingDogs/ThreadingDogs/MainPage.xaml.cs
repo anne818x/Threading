@@ -18,12 +18,10 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Printing;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace ThreadingDogs
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Page where you can print, select the listview 
     /// </summary>
     /// 
 
@@ -32,6 +30,7 @@ namespace ThreadingDogs
         PrintManager printmgr = PrintManager.GetForCurrentView();
         PrintDocument printDoc = null;
         PrintTask task = null;
+        //get the data from the database file
         databaseretrieve data = new databaseretrieve();
         List<Dog> liStdog;
 
@@ -40,21 +39,32 @@ namespace ThreadingDogs
             this.InitializeComponent();
             printmgr.PrintTaskRequested += Printmgr_PrintTaskRequested;
         }
+
+        /// <summary>
+        /// Onloading of the page, it loads all of the dog breed names into the listview
+        /// </summary>
+        /// 
         private void Page_Load(object sender, RoutedEventArgs e)
         {
             ListofBreed();
         }
 
+        /// <summary>
+        /// Requests to do a print task
+        /// </summary>
+        /// 
         private void Printmgr_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
         {
             var deferral = args.Request.GetDeferral();
-            task = args.Request.CreatePrintTask("Print", OnPrintTaskSourceRequrested);
-            //task.Completed += PrintTask_Completed;
+            task = args.Request.CreatePrintTask("Print", OnPrintTaskSourceRequested);
             PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(task.Options);
             deferral.Complete();
         }
 
-
+        /// <summary>
+        /// generates list of breed names for comparing listview and selecting one dog.
+        /// </summary>
+        /// 
         public void ListofBreed()
         {
             liStdog = data.dogList();
@@ -64,7 +74,12 @@ namespace ThreadingDogs
                 DogslistCompare.Items.Add(dog.Breed);
             }
         }
-        
+
+        /// <summary>
+        /// Displays list of breed names, user selects a dog, dog info is displayed
+        /// with PLINQ
+        /// </summary>
+        /// 
         private void Dogslist_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             liStdog = data.dogList();
@@ -82,6 +97,11 @@ namespace ThreadingDogs
             }
         }
 
+        /// <summary>
+        /// Listview only allows two clicks and displays the data on either side of the listview
+        /// With PLINQ 
+        /// </summary>
+        /// 
         private void DogslistCompare_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             liStdog = data.dogList();
@@ -118,7 +138,12 @@ namespace ThreadingDogs
                 }
             }
         }
-        private async void OnPrintTaskSourceRequrested(PrintTaskSourceRequestedArgs args)
+
+        /// <summary>
+        /// Requesting the windows UI to be able to open the print function
+        /// </summary>
+        /// 
+        private async void OnPrintTaskSourceRequested(PrintTaskSourceRequestedArgs args)
         {
             var def = args.GetDeferral();
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
@@ -128,35 +153,54 @@ namespace ThreadingDogs
               });
             def.Complete();
         }
+        /// <summary>
+        /// On button click it will create a new document with the preview of the page 
+        /// and then shows the print manager options
+        /// </summary>
+        /// 
         private async void appbar_Printer_Click(object sender, RoutedEventArgs e)
         {
             if (printDoc != null)
             {
                 printDoc.GetPreviewPage -= OnGetPreviewPage;
-                printDoc.Paginate -= PrintDic_Paginate;
-                printDoc.AddPages -= PrintDic_AddPages;
+                printDoc.Paginate -= PrintDoc_Paginate;
+                printDoc.AddPages -= PrintDoc_AddPages;
             }
             this.printDoc = new PrintDocument();
             printDoc.GetPreviewPage += OnGetPreviewPage;
-            printDoc.Paginate += PrintDic_Paginate;
-            printDoc.AddPages += PrintDic_AddPages;
+            printDoc.Paginate += PrintDoc_Paginate;
+            printDoc.AddPages += PrintDoc_AddPages;
             bool showPrint = await PrintManager.ShowPrintUIAsync();
         }
-        private void PrintDic_AddPages(object sender, AddPagesEventArgs e)
+
+        /// <summary>
+        /// creates page, of the current page that the application is on
+        /// </summary>
+        /// 
+        private void PrintDoc_AddPages(object sender, AddPagesEventArgs e)
         {
             printDoc.AddPage(this);
             printDoc.AddPagesComplete();
         }
-        private void PrintDic_Paginate(object sender, PaginateEventArgs e)
+
+        /// <summary>
+        /// retrieves print options and to set the page count to 1
+        /// </summary>
+        /// 
+        private void PrintDoc_Paginate(object sender, PaginateEventArgs e)
         {
             PrintTaskOptions opt = task.Options;
             PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(e.PrintTaskOptions);
             printDoc.SetPreviewPageCount(1, PreviewPageCountType.Final);
         }
+
+        /// <summary>
+        /// gets the preview of grid view, so its possible to see the what will be printed
+        /// </summary>
+        /// 
         private void OnGetPreviewPage(object sender, GetPreviewPageEventArgs e)
         {
             printDoc.SetPreviewPage(e.PageNumber, Area);
         }
-
     }
 }
