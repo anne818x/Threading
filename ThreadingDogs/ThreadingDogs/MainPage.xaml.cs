@@ -140,8 +140,7 @@ namespace ThreadingDogs
                 }
             }
         }
-
-
+        
         /// <summary>
         /// Requesting the windows UI to be able to open the print function
         /// </summary>
@@ -156,6 +155,12 @@ namespace ThreadingDogs
               });
             def.Complete();
         }
+
+        /// <summary>
+        /// register the document to be printed, to the printer
+        /// and open printer dialogue
+        /// </summary>
+        /// 
         private void appbar_Printer_Click(object sender, RoutedEventArgs e)
         {
             registerPrint();
@@ -180,8 +185,7 @@ namespace ThreadingDogs
             printDoc.AddPages += PrintDoc_AddPages;
             bool showPrint = await PrintManager.ShowPrintUIAsync();
         }
-       
-
+      
         /// <summary>
         /// creates page, of the current page that the application is on
         /// </summary>
@@ -234,7 +238,5 @@ namespace ThreadingDogs
             }
 
         }
-
-
     }
 }
