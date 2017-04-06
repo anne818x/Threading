@@ -5,79 +5,80 @@
     xmlns:local="using:ThreadingDogs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loaded="Page_Load">
+    mc:Ignorable="d" Loaded="Page_Load" Width="1142.091" Height="673.078">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" IsEnabled="True">
+        <Grid x:Name="Area" ScrollViewer.HorizontalScrollBarVisibility="Visible" Background="#FF8BD1BE">
+            <Pivot ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                <PivotItem Header="Compare">
+                    <StackPanel Orientation="Horizontal">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Grid.Row="1">
-            <PivotItem Header="Compare">
-                <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" Width="350">
 
-                    <StackPanel HorizontalAlignment="Left" Width="350">
-
-                        <TextBlock  FontSize="20">
+                            <TextBlock  FontSize="20">
                             <Run x:Name="breed1" FontSize="20" /><LineBreak/>
-                        </TextBlock>
-                        <Image x:Name="imagedog1" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
-                        <TextBlock >                       
+                            </TextBlock>
+                            <Image x:Name="imagedog1" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
+                            <TextBlock >                       
                         <Run x:Name="breedgroup1" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogheight1" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogweight1" FontSize="12" /><LineBreak/>
                         <Run x:Name="life1" FontSize="12" /><LineBreak/>
-                        </TextBlock>
+                            </TextBlock>
 
-                    </StackPanel>
+                        </StackPanel>
 
 
-                    <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
-                        <TextBlock FontSize="20">
-                            <Run Text="Select dog"/>
-                        </TextBlock>
-                        <ListView x:Name="DogslistCompare" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="DogslistCompare_OnSelectionChanged" IsItemClickEnabled="True"  SelectionMode="Multiple"/>
-                        
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
-                        <TextBlock  FontSize="20">
+                        <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
+                            <Button x:Name="selectDogComBtn" Click="selectDogComBtn_Click"  Content="Select Dog"/>
+                            <ListView x:Name="DogslistCompare" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="DogslistCompare_OnSelectionChanged" IsItemClickEnabled="True"  SelectionMode="Multiple"  Visibility="Collapsed"/>
+
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" Margin="10,10,0,118">
+                            <TextBlock  FontSize="20">
                             <Run x:Name="breed2" FontSize="20" /><LineBreak/>
-                        </TextBlock>
-                        <Image x:Name="imagedog2" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
-                        <TextBlock >                       
+                            </TextBlock>
+                            <Image x:Name="imagedog2" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
+                            <TextBlock Margin="12">                       
                         <Run x:Name="breedgroup2" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogheight2" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogweight2" FontSize="12" /><LineBreak/>
                         <Run x:Name="life2" FontSize="12" /><LineBreak/>
-                        </TextBlock>
+                            </TextBlock>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </PivotItem>
+                </PivotItem>
 
-            <PivotItem Header="Select Dog" Margin="14,10,10,-10">
-                <StackPanel Orientation="Horizontal">
+                <PivotItem Header="Select Dog" Margin="14,10,10,-10">
+                    <StackPanel Orientation="Horizontal">
 
-                    <StackPanel HorizontalAlignment="Left" Width="350">
+                        <StackPanel HorizontalAlignment="Left" Width="350">
 
-                        <TextBlock  FontSize="20">
+                            <TextBlock  FontSize="20">
                             <Run x:Name="breed" FontSize="20" /><LineBreak/>
-                        </TextBlock>
-                        <Image x:Name="imagedog" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
-                        <TextBlock >                       
+                            </TextBlock>
+                            <Image x:Name="imagedog" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
+                            <TextBlock >                       
                         <Run x:Name="breedgroup" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogheight" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogweight" FontSize="12" /><LineBreak/>
                         <Run x:Name="life" FontSize="12" /><LineBreak/>
-                        </TextBlock>
+                            </TextBlock>
 
+                        </StackPanel>
+
+
+                        <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
+                            <Button x:Name="selectDogBtn" Click="selectDogBtn_Click"  Content="Select Dog"/>
+                            <ListView x:Name="Dogslist" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="Dogslist_OnSelectionChanged" IsItemClickEnabled="True"  Visibility="Collapsed"/>
+                        </StackPanel>
                     </StackPanel>
 
+                </PivotItem>
+            </Pivot>
+            <Button x:Name="appbar_Printer" Click="appbar_Printer_Click" Content="Print Page" HorizontalAlignment="Left" Margin="144,412,0,0" VerticalAlignment="Top"/>
+            
 
-                    <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
-                        <TextBlock FontSize="20">
-                            <Run Text="Select dog"/>
-                        </TextBlock>
-                        <ListView x:Name="Dogslist" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="Dogslist_OnSelectionChanged" IsItemClickEnabled="True"/>
-                    </StackPanel>
-                </StackPanel>
-
-            </PivotItem>
-        </Pivot>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>
+   
