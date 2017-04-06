@@ -9,12 +9,23 @@
     <Grid Background="AliceBlue">
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" IsEnabled="True">
             <RelativePanel Margin="10,10,10,0" VerticalAlignment="Top" Height="1060">
-            <ListView x:Name="DogsLog" HorizontalAlignment="Left" Height="664" Margin="58,71,0,0" VerticalAlignment="Top" Width="650" BorderThickness="2" BorderBrush="Gray"/>
-            <ProgressBar x:Name="BarProgress" HorizontalAlignment="Left" Height="78" Margin="58,794,0,0" VerticalAlignment="Top" Width="650" BorderBrush="Gray"/>
-            <TextBox x:Name="TextLog" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="100, 75, 0, 0" TextWrapping="Wrap" VerticalAlignment="Top" Height="359" Width="679" AcceptsReturn="true"/>
-            <Button x:Name="GetBreeds" Content="Get Breeds" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="100, 500, 0, 0" VerticalAlignment="Top" Height="78" Width="179" Click="GetBreeds_Click_1" BorderThickness="1" BorderBrush="Gray"/>
-            <Button x:Name="GetAddData" Content="Get Additional Data" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="350, 500, 0, 0" VerticalAlignment="Top" RenderTransformOrigin="-6.646,-4.812" Height="78" Width="179" Click="GetAddData_Click"/>
-            <Button x:Name="SaveToDb" Content="Save to database" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="600, 500, 0, 0" VerticalAlignment="Top" Height="78" Width="179" Click="saveToDb_Click"/>
+                <FlyoutBase.AttachedFlyout>
+                    <Flyout>
+                        <Grid Height="100" Width="100"/>
+                    </Flyout>
+                </FlyoutBase.AttachedFlyout>
+                <ListView x:Name="DogsLog" HorizontalAlignment="Left" Height="664" Margin="58,71,0,0" VerticalAlignment="Top" Width="650" BorderThickness="2" BorderBrush="Gray"/>
+                <ProgressBar x:Name="BarProgress" HorizontalAlignment="Left" Height="78" Margin="58,794,0,0" VerticalAlignment="Top" Width="650" BorderBrush="Gray"/>
+                <TextBox x:Name="TextLog" IsReadOnly="True" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="100, 75, 0, 0" TextWrapping="Wrap" VerticalAlignment="Top" Height="359" Width="679" AcceptsReturn="true"/>
+                <Button x:Name="GetBreeds" Content="Get Breeds" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="100, 500, 0, 0" VerticalAlignment="Top" Height="78" Width="179" Click="GetBreeds_Click_1" BorderThickness="1" BorderBrush="Gray"/>
+                <Button x:Name="GetAddData" Content="Get Additional Data" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="350, 500, 0, 0" VerticalAlignment="Top" RenderTransformOrigin="-6.646,-4.812" Height="78" Width="179" Click="GetAddData_Click"/>
+                <Button x:Name="SaveToDb" Content="Save to database" HorizontalAlignment="Left" RelativePanel.RightOf="DogsLog" Margin="600, 500, 0, 0" VerticalAlignment="Top" Height="78" Width="179" Click="saveToDb_Click"/>
+                <ComboBox x:Name="WebsiteSelect" VerticalAlignment="Top" Width="200" BorderBrush="Gray" RelativePanel.RightOf="DogsLog" Margin="100,625,0,-641" Height="40">
+                    <ComboBoxItem Tag="D" IsSelected="True">Dogtime.com</ComboBoxItem>
+                    <ComboBoxItem Tag="P" >Purina.com</ComboBoxItem>
+                </ComboBox>
+                <TextBlock x:Name="TextCombo" Height="20" RelativePanel.RightOf="DogsLog" TextWrapping="Wrap" Text="Select source:" VerticalAlignment="Top" Margin="100,600,0,-620"/>
+
             </RelativePanel>
         </ScrollViewer>
     </Grid>

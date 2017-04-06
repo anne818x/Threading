@@ -97,9 +97,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\ICrawlerInterface.cs" />
     <Compile Include="Classes\DatabaseUpload.cs" />
     <Compile Include="Classes\Dog.cs" />
     <Compile Include="Classes\WebCrawler.cs" />
+    <Compile Include="Classes\WebCrawlerPurina.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -169,8 +171,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data.RT">
-      <HintPath>..\..\..\..\Desktop\RT\MySql.Data.RT.dll</HintPath>
+    <Reference Include="MySql.Data.RT, Version=6.7.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\MySql.Data.RT.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

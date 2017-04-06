@@ -1,13 +1,13 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 
 namespace WebCrawler.Classes
 {
-    class WebCrawler
+    class WebCrawler : ICrawlerInterface
     {
         private static List<Dog> Breeds = new List<Dog>();
         private static List<Dog> ExportBreeds = new List<Dog>();
@@ -41,7 +41,7 @@ namespace WebCrawler.Classes
             for (var index = 0; index < divs.Count; index++)
             {
                 //Progress bar increment
-                MainPage.Progress.Value = ((index + 1) / (double) divs.Count) * 100;
+                _page.Progress.Value = ((index + 1) / (double) divs.Count) * 100;
                 await Task.Delay(10);
 
                 var div = divs[index];
@@ -57,22 +57,22 @@ namespace WebCrawler.Classes
 
         public async Task GetUniqueBreedInfo()
         {
-            try
+            for (var index = 0; index < Breeds.Count; index++)
             {
-                for (var index = 0; index < Breeds.Count; index++)
+                //Dog model containing full information for each breed
+                var completeDog = new Dog();
+
+                //Progress Bar counter
+                _page.Progress.Value = ((index + 1) / (double) Breeds.Count) * 100;
+                var dog = Breeds[index];
+
+                //basic data about breed
+                completeDog.Breed = dog.Breed;
+                completeDog.Image = dog.Image;
+                completeDog.ProfileUrl = dog.ProfileUrl;
+
+                try
                 {
-                    //Dog model containing full information for each breed
-                    var completeDog = new Dog();
-
-                    //Progress Bar counter
-                    MainPage.Progress.Value = ((index + 1) / (double) Breeds.Count) * 100;
-                    var dog = Breeds[index];
-
-                    //basic data about breed
-                    completeDog.Breed = dog.Breed;
-                    completeDog.Image = dog.Image;
-                    completeDog.ProfileUrl = dog.ProfileUrl;
-
                     //Request to get html page for each dog
                     var httpClient = new HttpClient();
                     var html = await httpClient.GetStringAsync(dog.ProfileUrl);
@@ -122,10 +122,11 @@ namespace WebCrawler.Classes
                     }
                     ExportBreeds.Add(completeDog);
                 }
-            }
-            catch (Exception e)
-            {
-                _page.ChangeTextBoxValue("Exeption with getting breeds!");
+                catch (Exception e)
+                {
+                    _page.ChangeTextBoxValue("\r\n Exeption with getting breeds!");
+                    continue;
+                }
             }
         }
 

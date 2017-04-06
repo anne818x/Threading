@@ -17381,7 +17381,7 @@
   },
   "libraries": {
     "HtmlAgilityPack/1.4.9.5": {
-      "sha512": "i5di/J7GO4y2kx/hhVzctPrBI8G2cefWZDMDU/FdOUD3iVkiidN1q1NDZ0FvqrhB28LSaYaM4Z0hs86Tnp0IzA==",
+      "sha512": "iKBDxJHESRCIRbmgLKVkNM86LIX52jf6wsVQdbSsLpPUG9oSnAD1Pz8IHjJT+dQ3TWJEu4WYZvbdlixdmWKMVw==",
       "type": "package",
       "path": "htmlagilitypack/1.4.9.5",
       "files": [
@@ -26032,14 +26032,14 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\emily\\.nuget\\packages\\": {}
+    "C:\\Users\\kalov\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\emily\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
+      "projectUniqueName": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
       "projectName": "ThreadingDogs",
-      "projectPath": "C:\\Users\\emily\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
-      "projectJsonPath": "C:\\Users\\emily\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\project.json",
+      "projectPath": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
+      "projectJsonPath": "C:\\Users\\kalov\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {
