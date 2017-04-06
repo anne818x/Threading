@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Windows.UI.ViewManagement;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using WebCrawler.Classes;
+using Windows.System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -12,17 +13,20 @@ namespace WebCrawler
     /// </summary>
     public partial class MainPage : Page
     {
-        private Classes.WebCrawler crawler;
-        private Classes.DatabaseUpload dbUpload;
+        private ICrawlerInterface Crawler;
+        private ICrawlerInterface WebCrawlerPurina;
+        private DatabaseUpload dbUpload;
+        private List<Dog> uploadBreeds;
 
-        public static ProgressBar Progress;
+        public ProgressBar Progress;
 
         public MainPage()
         {
             this.InitializeComponent();
             Progress = BarProgress;
-            crawler = new Classes.WebCrawler(this);
-            dbUpload = new Classes.DatabaseUpload(this);
+            Crawler = new Classes.WebCrawler(this);
+            WebCrawlerPurina = new WebCrawlerPurina(this);
+            dbUpload = new DatabaseUpload(this);
         }
 
         /// <summary>
@@ -32,16 +36,50 @@ namespace WebCrawler
         /// <param name="e"></param>
         private async void GetBreeds_Click_1(object sender, RoutedEventArgs e)
         {
-            var task = crawler.GetBreedsData();
+            IEnumerable<Dog> breeds;
             TextLog.Text += "Start getting breeds from internet..." + "\r\n";
-            await task;
-            TextLog.Text += "Done!" + "\r\n" + crawler.GetBreedsCount() + " breeds found" + "\r\n";
-
-            IEnumerable<Dog> breeds = crawler.GetBreeds();
-
-            foreach (var dog in breeds)
+            DogsLog.Items.Clear();
+            if (WebsiteSelect.SelectionBoxItem.ToString() == "Dogtime.com")
             {
-                DogsLog.Items.Add(dog != null ? dog.Breed : "No data was found. Please try again.");
+                var task = Crawler.GetBreedsData();
+                await task;
+
+                TextLog.Text += "Done!" + "\r\n" + Crawler.GetBreedsCount() + " breeds found" + "\r\n";
+
+                breeds = Crawler.GetBreeds();
+
+                PrintBreedsToConsole(breeds);
+
+            }
+            else if (WebsiteSelect.SelectionBoxItem.ToString() == "Purina.com")
+            {
+                var task = WebCrawlerPurina.GetBreedsData();
+                await task;
+
+                TextLog.Text += "Done!" + "\r\n" + WebCrawlerPurina.GetBreedsCount() + " breeds found" + "\r\n";
+
+                breeds = WebCrawlerPurina.GetBreeds();
+
+                PrintBreedsToConsole(breeds);
+            }
+        }
+
+        /// <summary>
+        /// Method that prints all breeds in a collection to the ListView
+        /// </summary>
+        /// <param name="breeds"></param>
+        public void PrintBreedsToConsole(IEnumerable<Dog> breeds)
+        {
+            if (breeds != null)
+            {
+                foreach (var dog in breeds)
+                {
+                    DogsLog.Items.Add(dog != null ? dog.Breed : "No data was found. Please try again.");
+                }
+            }
+            else
+            {
+                ChangeTextBoxValue("No data");
             }
         }
 
@@ -55,10 +93,18 @@ namespace WebCrawler
             SaveToDb.IsEnabled = false;
             TextLog.Text += "Downloading additional information..." + "\r\n";
 
-            var task = crawler.GetUniqueBreedInfo();
-            await task;
+            if (WebsiteSelect.SelectionBoxItem.ToString() == "Dogtime.com")
+            {
+                var task = Crawler.GetUniqueBreedInfo();
+                await task;
+            }
+            else if (WebsiteSelect.SelectionBoxItem.ToString() == "Purina.com")
+            {
+                var task = WebCrawlerPurina.GetUniqueBreedInfo();
+                await task;
+            }
 
-            TextLog.Text += "Done!";
+            TextLog.Text += "\r\n Done!";
             SaveToDb.IsEnabled = true;
         }
 
@@ -71,9 +117,18 @@ namespace WebCrawler
         {
             GetAddData.IsEnabled = false;
             TextLog.Text += "\r\n" + "Saving to database";
-            var taskDb = dbUpload.InsertToDb();
-            await taskDb;
+            if (WebsiteSelect.SelectionBoxItem.ToString() == "Dogtime.com")
+            {
+                uploadBreeds = Crawler.GetAllDogs();
+                dbUpload.InsertToDb(uploadBreeds);
+            }
+            else if(WebsiteSelect.SelectionBoxItem.ToString() == "Purina.com")
+            {
+                uploadBreeds = WebCrawlerPurina.GetAllDogs();
+                dbUpload.InsertToDb(uploadBreeds);
+            }
             GetAddData.IsEnabled = true;
+            TextLog.Text += "\r\n" + "Saving to database completed";
         }
 
         /// <summary>

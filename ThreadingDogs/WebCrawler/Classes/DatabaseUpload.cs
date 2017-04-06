@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using MySql.Data.MySqlClient;
 
 //using Microsoft.EntityFrameworkCore;
@@ -10,17 +11,15 @@ namespace WebCrawler.Classes
     class DatabaseUpload
     {
         private static MainPage _page;
-        private List<Dog> exportBreeds;
-        private WebCrawler crawler;
+        private ICrawlerInterface crawler;
 
         public DatabaseUpload(MainPage page)
         {
             _page = page;
-            crawler = new WebCrawler(null);
-            exportBreeds = crawler.GetAllDogs();
+            crawler = new WebCrawlerPurina(null);
         }
 
-        public async Task InsertToDb()
+        public void InsertToDb(List<Dog> exportBreeds)
         {
             try
             {
@@ -32,18 +31,18 @@ namespace WebCrawler.Classes
 
                     //delete old content in the database
                     MySqlCommand truncateCommand = connection.CreateCommand();
-                    truncateCommand.CommandText = "TRUNCATE TABLE  dog";
+                    truncateCommand.CommandText = "TRUNCATE TABLE dog";
                     truncateCommand.ExecuteNonQuery();
 
                     //save data to database
                     for (var index = 0; index < exportBreeds.Count; index++)
                     {
                         var breed = exportBreeds[index];
-                        MainPage.Progress.Value = ((index + 1) / (double) exportBreeds.Count) * 100;
+                        //_page.Progress.Value = ((index + 1) / (double) exportBreeds.Count) * 100;
 
                         MySqlCommand insertCommand = connection.CreateCommand();
                         insertCommand.CommandText =
-                            "INSERT INTO dog( breed, dog_image, breed_group, dog_height, dog_weight, lifespan, link_dog)VALUES( @breed, @dog_image, @breed_group, @dog_height, @dog_weight, @lifespan, @link_dog)";
+                            "INSERT INTO dog( breed, dog_image, breed_group, dog_height, dog_weight, lifespan, link_dog, description)VALUES( @breed, @dog_image, @breed_group, @dog_height, @dog_weight, @lifespan, @link_dog, @description)";
 
                         insertCommand.Parameters.AddWithValue("@breed", breed.Breed);
                         insertCommand.Parameters.AddWithValue("@dog_image", breed.Image);
@@ -52,15 +51,15 @@ namespace WebCrawler.Classes
                         insertCommand.Parameters.AddWithValue("@dog_weight", breed.Weight);
                         insertCommand.Parameters.AddWithValue("@lifespan", breed.LifeSpan);
                         insertCommand.Parameters.AddWithValue("@link_dog", breed.ProfileUrl);
+                        insertCommand.Parameters.AddWithValue("@description", breed.Description);
                         insertCommand.ExecuteNonQuery();
                     }
-                    connection.Clone();
+                    connection.Close();
                 }
-                _page.ChangeTextBoxValue("Saving to database completed");
             }
             catch (MySqlException)
             {
-                _page.ChangeTextBoxValue("Problem with uploading to database");
+                _page.ChangeTextBoxValue("An exeption appeared durring saving. Data is still saved in DB.");
             }
         }
     }
