@@ -8,7 +8,6 @@
     mc:Ignorable="d" Loaded="Page_Load" Width="1142.091" Height="673.078">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" IsEnabled="True">
         <Grid x:Name="Area" ScrollViewer.HorizontalScrollBarVisibility="Visible" Background="#FF8BD1BE">
-
             <Pivot ScrollViewer.HorizontalScrollBarVisibility="Visible">
                 <PivotItem Header="Compare">
                     <StackPanel Orientation="Horizontal">
@@ -30,13 +29,11 @@
 
 
                         <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
-                            <TextBlock FontSize="20">
-                            <Run Text="Select dog"/>
-                            </TextBlock>
-                            <ListView x:Name="DogslistCompare" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="DogslistCompare_OnSelectionChanged" IsItemClickEnabled="True"  SelectionMode="Multiple"/>
+                            <Button x:Name="selectDogComBtn" Click="selectDogComBtn_Click"  Content="Select Dog"/>
+                            <ListView x:Name="DogslistCompare" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="DogslistCompare_OnSelectionChanged" IsItemClickEnabled="True"  SelectionMode="Multiple"  Visibility="Collapsed"/>
 
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
+                        <StackPanel HorizontalAlignment="Right" Margin="10,10,0,118">
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed2" FontSize="20" /><LineBreak/>
                             </TextBlock>
@@ -71,18 +68,17 @@
 
 
                         <StackPanel HorizontalAlignment="Right" Margin="0,10,0,118">
-                            <TextBlock FontSize="20">
-                            <Run Text="Select dog"/>
-                            </TextBlock>
-                            <ListView x:Name="Dogslist" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="Dogslist_OnSelectionChanged" IsItemClickEnabled="True"/>
+                            <Button x:Name="selectDogBtn" Click="selectDogBtn_Click"  Content="Select Dog"/>
+                            <ListView x:Name="Dogslist" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="Dogslist_OnSelectionChanged" IsItemClickEnabled="True"  Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
 
                 </PivotItem>
             </Pivot>
-            <Button x:Name="appbar_Printer" Click="appbar_Printer_Click"
-                       Content="Print Page" HorizontalAlignment="Left" Margin="144,412,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="appbar_Printer" Click="appbar_Printer_Click" Content="Print Page" HorizontalAlignment="Left" Margin="144,412,0,0" VerticalAlignment="Top"/>
+            
 
         </Grid>
     </ScrollViewer>
 </Page>
+   

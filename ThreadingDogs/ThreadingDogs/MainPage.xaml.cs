@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Printing;
 using Windows.Graphics.Printing.OptionDetails;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -64,7 +65,7 @@ namespace ThreadingDogs
                 DogslistCompare.Items.Add(dog.Breed);
             }
         }
-        
+
         private void Dogslist_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             liStdog = data.dogList();
@@ -105,7 +106,8 @@ namespace ThreadingDogs
                         life1.Text = "LifeSpan: " + dog.LifeSpan;
                     }
                 }
-                if (selectedDogs.Length > 1) {
+                if (selectedDogs.Length > 1)
+                {
                     if (selectedDogs[1].ToString() == dog.Breed)
                     {
                         breed2.Text = "Breed: " + dog.Breed;
@@ -128,7 +130,12 @@ namespace ThreadingDogs
               });
             def.Complete();
         }
-        private async void appbar_Printer_Click(object sender, RoutedEventArgs e)
+        private void appbar_Printer_Click(object sender, RoutedEventArgs e)
+        {
+            registerPrint();
+        }
+
+        private async void registerPrint()
         {
             if (printDoc != null)
             {
@@ -142,6 +149,7 @@ namespace ThreadingDogs
             printDoc.AddPages += PrintDic_AddPages;
             bool showPrint = await PrintManager.ShowPrintUIAsync();
         }
+
         private void PrintDic_AddPages(object sender, AddPagesEventArgs e)
         {
             printDoc.AddPage(this);
@@ -156,6 +164,29 @@ namespace ThreadingDogs
         private void OnGetPreviewPage(object sender, GetPreviewPageEventArgs e)
         {
             printDoc.SetPreviewPage(e.PageNumber, Area);
+        }
+
+        private void selectDogComBtn_Click(object sender, RoutedEventArgs e)
+        {
+            toggleListviewView(DogslistCompare);
+        }
+
+        private void selectDogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            toggleListviewView(Dogslist);
+        }
+
+        private void toggleListviewView(ListView lw)
+        {
+            if (lw.Visibility == Visibility.Collapsed)
+            {
+                lw.Visibility = Visibility.Visible;
+            }
+            else if (lw.Visibility == Visibility.Visible)
+            {
+                lw.Visibility = Visibility.Collapsed;
+            }
+
         }
 
     }
