@@ -134,11 +134,13 @@ namespace ThreadingDogs
         /// 
         private async void OnPrintTaskSourceRequested(PrintTaskSourceRequestedArgs args)
         {
+            var def = args.GetDeferral();
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
               () =>
               {
                   args.SetSource(printDoc?.DocumentSource);
               });
+            def.Complete();
         }
 
         /// <summary>
