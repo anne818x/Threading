@@ -12,5 +12,6 @@
         public string Height { get; set; }
         public string Weight { get; set; }
         public string LifeSpan { get; set; }
+        public string Description { get; set; }
     }   
 }

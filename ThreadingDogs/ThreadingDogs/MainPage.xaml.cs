@@ -81,6 +81,7 @@ namespace ThreadingDogs
                     dogheight.Text = "Height: " + dog.Height;
                     dogweight.Text = "Weight: " + dog.Weight;
                     life.Text = "LifeSpan: " + dog.LifeSpan;
+                    description.Text = "Description: " + dog.Description;
                 }
             }
         }
@@ -111,6 +112,7 @@ namespace ThreadingDogs
                         dogheight1.Text = "Height: " + dog.Height;
                         dogweight1.Text = "Weight: " + dog.Weight;
                         life1.Text = "LifeSpan: " + dog.LifeSpan;
+                        description1.Text = "Description: " + dog.Description;
                     }
                 }
                 if (selectedDogs.Length > 1)
@@ -123,6 +125,7 @@ namespace ThreadingDogs
                         dogheight2.Text = "Height: " + dog.Height;
                         dogweight2.Text = "Weight: " + dog.Weight;
                         life2.Text = "LifeSpan: " + dog.LifeSpan;
+                        description2.Text = "Description: " + dog.Description;
                     }
                 }
             }

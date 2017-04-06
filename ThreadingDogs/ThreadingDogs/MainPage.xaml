@@ -12,17 +12,18 @@
                 <PivotItem Header="Compare">
                     <StackPanel Orientation="Horizontal">
 
-                        <StackPanel HorizontalAlignment="Left" Width="350" Height="400" BorderBrush="DarkGray" BorderThickness="5">
+                        <StackPanel HorizontalAlignment="Left" Margin="0,0,0,150" Width="350" Height="510" BorderBrush="DarkGray" BorderThickness="5">
 
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed1" FontSize="20" /><LineBreak/>
                             </TextBlock>
                             <Image x:Name="imagedog1" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
-                            <TextBlock >                       
-                        <Run x:Name="breedgroup1" FontSize="12" /><LineBreak/>
+                            <TextBlock TextWrapping="Wrap">                       
+                        <Run x:Name="breedgroup1" FontSize="12"  /><LineBreak/>
                         <Run x:Name="dogheight1" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogweight1" FontSize="12" /><LineBreak/>
                         <Run x:Name="life1" FontSize="12" /><LineBreak/>
+                                <Run x:Name="description1" FontSize="11" /><LineBreak/>
                             </TextBlock>
 
                         </StackPanel>
@@ -32,17 +33,18 @@
                             <Button x:Name="selectDogComBtn" Margin="142,0,0,0" Click="selectDogComBtn_Click"  Content="Select Dog"/>
                             <ListView x:Name="DogslistCompare" HorizontalAlignment="Left" Height="414" Margin="0,0,0,0" VerticalAlignment="Top" Width="372" BorderThickness="2" BorderBrush="Gray" SelectedItem="OnSelectedItem" SelectionChanged="DogslistCompare_OnSelectionChanged" IsItemClickEnabled="True"  SelectionMode="Multiple"  Visibility="Collapsed"/>
                         </StackPanel>
-                        
-                        <StackPanel HorizontalAlignment="Right" Margin="10,10,0,0" Width="350" Height="400" BorderBrush="DarkGray" BorderThickness="5">
+
+                        <StackPanel HorizontalAlignment="Right" Margin="0,0,0,150" Width="350" Height="510" BorderBrush="DarkGray" BorderThickness="5">
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed2" FontSize="20" /><LineBreak/>
                             </TextBlock>
                             <Image x:Name="imagedog2" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
-                            <TextBlock Margin="12">                       
+                            <TextBlock Margin="12" TextWrapping="Wrap">                       
                         <Run x:Name="breedgroup2" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogheight2" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogweight2" FontSize="12" /><LineBreak/>
                         <Run x:Name="life2" FontSize="12" /><LineBreak/>
+                                <Run x:Name="description2" FontSize="11" /><LineBreak/>
                             </TextBlock>
                         </StackPanel>
                     </StackPanel>
@@ -51,17 +53,18 @@
                 <PivotItem Header="Select Dog" Margin="14,10,10,-10">
                     <StackPanel Orientation="Horizontal" >
 
-                        <StackPanel HorizontalAlignment="Left" Width="350" Height="400" BorderBrush="DarkGray" BorderThickness="5">
+                        <StackPanel HorizontalAlignment="Left" Width="350" Height="510" Margin="0,0,0,150" BorderBrush="DarkGray" BorderThickness="5">
 
                             <TextBlock  FontSize="20">
                             <Run x:Name="breed" FontSize="20" /><LineBreak/>
                             </TextBlock>
                             <Image x:Name="imagedog" HorizontalAlignment="Left" Height="200" Width="296"  Stretch="Fill" />
-                            <TextBlock >                       
+                            <TextBlock TextWrapping="Wrap" >                       
                         <Run x:Name="breedgroup" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogheight" FontSize="12" /><LineBreak/>
                         <Run x:Name="dogweight" FontSize="12" /><LineBreak/>
                         <Run x:Name="life" FontSize="12" /><LineBreak/>
+                        <Run x:Name="description" FontSize="12" /><LineBreak/>
                             </TextBlock>
 
                         </StackPanel>

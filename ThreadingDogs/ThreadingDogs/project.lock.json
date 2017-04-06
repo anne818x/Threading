@@ -26032,14 +26032,14 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\zulheika\\.nuget\\packages\\": {}
+    "C:\\Users\\emily\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\zulheika\\Documents\\GitHub\\threading\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
+      "projectUniqueName": "C:\\Users\\emily\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
       "projectName": "ThreadingDogs",
-      "projectPath": "C:\\Users\\zulheika\\Documents\\GitHub\\threading\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
-      "projectJsonPath": "C:\\Users\\zulheika\\Documents\\GitHub\\threading\\Threading\\ThreadingDogs\\ThreadingDogs\\project.json",
+      "projectPath": "C:\\Users\\emily\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\ThreadingDogs.csproj",
+      "projectJsonPath": "C:\\Users\\emily\\Documents\\Threading\\ThreadingDogs\\ThreadingDogs\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {

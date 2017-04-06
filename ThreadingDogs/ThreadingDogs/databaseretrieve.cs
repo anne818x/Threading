@@ -45,6 +45,7 @@ namespace ThreadingDogs
                             dog.LifeSpan = reader.GetString("lifespan");
                             dog.Image = reader.GetString("dog_image");
                             dog.ProfileUrl = reader.GetString("link_dog");
+                            dog.Description = reader.GetString("description");
                             //adds the data it retireved from dog into the list
                             Breedname.Add(dog);
                         }
