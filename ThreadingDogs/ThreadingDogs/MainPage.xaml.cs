@@ -38,7 +38,6 @@ namespace ThreadingDogs
         public MainPage()
         {
             this.InitializeComponent();
-            printmgr.PrintTaskRequested += Printmgr_PrintTaskRequested;
         }
 
         /// <summary>
@@ -135,13 +134,11 @@ namespace ThreadingDogs
         /// 
         private async void OnPrintTaskSourceRequested(PrintTaskSourceRequestedArgs args)
         {
-            var def = args.GetDeferral();
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
               () =>
               {
                   args.SetSource(printDoc?.DocumentSource);
               });
-            def.Complete();
         }
 
         /// <summary>
@@ -161,16 +158,11 @@ namespace ThreadingDogs
         /// 
         private async void registerPrint()
         {
-            if (printDoc != null)
-            {
-                printDoc.GetPreviewPage -= OnGetPreviewPage;
-                printDoc.Paginate -= PrintDoc_Paginate;
-                printDoc.AddPages -= PrintDoc_AddPages;
-            }
             this.printDoc = new PrintDocument();
             printDoc.GetPreviewPage += OnGetPreviewPage;
             printDoc.Paginate += PrintDoc_Paginate;
             printDoc.AddPages += PrintDoc_AddPages;
+            printmgr.PrintTaskRequested += Printmgr_PrintTaskRequested;
             bool showPrint = await PrintManager.ShowPrintUIAsync();
         }
       
@@ -190,8 +182,6 @@ namespace ThreadingDogs
         /// 
         private void PrintDoc_Paginate(object sender, PaginateEventArgs e)
         {
-            PrintTaskOptions opt = task.Options;
-            PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(e.PrintTaskOptions);
             printDoc.SetPreviewPageCount(1, PreviewPageCountType.Final);
         }
 
@@ -201,10 +191,8 @@ namespace ThreadingDogs
         /// 
         private void Printmgr_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
         {
-            var deferral = args.Request.GetDeferral();
+            
             task = args.Request.CreatePrintTask("Print", OnPrintTaskSourceRequested);
-            PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(task.Options);
-            deferral.Complete();
         }
 
         /// <summary>
