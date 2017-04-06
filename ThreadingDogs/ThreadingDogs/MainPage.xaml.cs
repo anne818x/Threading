@@ -51,18 +51,6 @@ namespace ThreadingDogs
         }
 
         /// <summary>
-        /// Requests to do a print task
-        /// </summary>
-        /// 
-        private void Printmgr_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
-        {
-            var deferral = args.Request.GetDeferral();
-            task = args.Request.CreatePrintTask("Print", OnPrintTaskSourceRequested);
-            PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(task.Options);
-            deferral.Complete();
-        }
-
-        /// <summary>
         /// generates list of breed names for comparing listview and selecting one dog.
         /// </summary>
         /// 
@@ -208,6 +196,18 @@ namespace ThreadingDogs
         }
 
         /// <summary>
+        /// Requests to do a print task
+        /// </summary>
+        /// 
+        private void Printmgr_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
+        {
+            var deferral = args.Request.GetDeferral();
+            task = args.Request.CreatePrintTask("Print", OnPrintTaskSourceRequested);
+            PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(task.Options);
+            deferral.Complete();
+        }
+
+        /// <summary>
         /// gets the preview of grid view, so its possible to see the what will be printed
         /// </summary>
         /// 
@@ -215,7 +215,10 @@ namespace ThreadingDogs
         {
            printDoc.SetPreviewPage(e.PageNumber, Area);
         }
-
+        /// <summary>
+        /// These methods are toggles to make the listview collapse
+        /// </summary>
+        /// 
         private void selectDogComBtn_Click(object sender, RoutedEventArgs e)
         {
             toggleListviewView(DogslistCompare);
